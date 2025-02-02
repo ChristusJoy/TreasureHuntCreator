@@ -11,7 +11,7 @@
 - Member 3: Harilakshmi VM - Sahrdaya College Of Engineering and Technology, Kodakara
 
 ### Hosted Project Link
-treasure-hunt-creator.vercel.app
+[treasure-hunt-creator.vercel.app](https://treasure-hunt-creator.vercel.app/)
 
 ### Project Description
 Website for hosting treasure hunt.Host can upload the map and drop pins, which lead to clues.The whole map can be shared as a code when entered by a user displays the treasure map. 
