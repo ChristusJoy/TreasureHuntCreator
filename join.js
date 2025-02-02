@@ -67,8 +67,8 @@ function placePins(pins, img) {
         pin.classList.add('pin');
 
         // Calculate pin position relative to the image's size and position
-        const pinX = (x / 100) * imgRect.width + 1000; // Adjusted to the right
-        const pinY = (y / 100) * imgRect.height + 1000; // Adjusted down
+        const pinX = (x / 100) * imgRect.width + 465; // Adjusted to the right
+        const pinY = (y / 100) * imgRect.height + 345; // Adjusted down
 
         // Set the position of the pin based on the image's bounding box
         pin.style.left = `${pinX}px`; 
