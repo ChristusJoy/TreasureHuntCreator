@@ -1,90 +1,63 @@
-# Treasure Hunt
+# TreasureHunt 🎯
 
-Welcome to the Treasure Hunt project! This project allows users to conduct and join treasure hunts by uploading images, placing pins, and sharing hunt codes.
 
-## Features
+## Basic Details
+### Team Name: Inaara
 
-- Upload images and place pins to create a treasure map.
-- Save and share treasure maps using unique hunt codes.
-- Join treasure hunts by entering a hunt code.
-- Responsive design for a seamless experience on different devices.
 
-## Technologies Used
+### Team Members
+- Member 1: Evlin Jossy - Sahrdaya College Of Engineering and Technology, Kodakara 
+- Member 2: Gopika TR - Sahrdaya College Of Engineering and Technology, Kodakara
+- Member 3: Harilakshmi VM - Sahrdaya College Of Engineering and Technology, Kodakara
 
-- **Frontend:** HTML, CSS, JavaScript
-- **Backend:** Node.js, Express
-- **Database:** Firebase Firestore
-- **Storage:** Google Drive API
-- **Authentication:** Google Service Account
+### Hosted Project Link
+[mention your project hosted project link here]
 
-## Setup Instructions
+### Project Description
+Website for hosting treasure hunt.Host can upload the map and drop pins, which lead to clues.The whole map can be shared as a code when entered by a user displays the treasure map. 
 
-### Prerequisites
+### The Problem statement
+Helps to conduct a tresure hunt with high customization efficiently and in a matter of minutes.
 
-- Node.js and npm installed on your machine.
-- Firebase project set up with Firestore and Storage enabled.
-- Google Cloud project with a service account and Google Drive API enabled.
+### The Solution
+We created a lightweight website using HTML, CSS and Javascript, which lets the user to upload their own maps and mark their own clues anywhere on the map.The map is stored in the firestore in base encoding format to save space. The map pins are stored as coordinates in the same document.The treasure hunt map can be shared just using a simple code.
 
-### Installation
+Participants can easily enter this code to acess the map, pins and clues. 
 
-1. Clone the repository:
-    ```bash
-    git clone https://github.com/your-username/treasure_hunt.git
-    cd treasure_hunt
-    ```
+And in case you get bored waiting for the host to send you the code we have some fun pickup lines to entertain you.
 
-2. Install backend dependencies:
-    ```bash
-    npm install
-    ```
+## Technical Details
+### Technologies/Components Used
+For Software:
+- HTML, CSS, Javascript
+- Firestore, vercel, Chatgpt, Vscode
 
-3. Create a `.env` file in the root directory and add your environment variables:
-    ```env
-    GOOGLE_APPLICATION_CREDENTIALS=credentials.json
-    ```
+For Hardware:
+- System capable of running simple web browser
 
-4. Place your `credentials.json` file (Google service account key) in the root directory.
+### Implementation
+For Software: Web browser
 
-5. Update the Firebase configuration in `index.html`, `join.html`, and `conduct.html` with your Firebase project details.
+# Screenshots (Add at least 3)
+![homepage](https://github.com/user-attachments/assets/aafab47b-4172-45d0-bbb6-55ad9b3293ee)
 
-### Running the Application
+*Landing page of website*
 
-1. Start the backend server:
-    ```bash
-    node server.js
-    ```
+![adding pins](https://github.com/user-attachments/assets/41e1898a-9576-4bbd-99f9-04bd2a730c7d)
+*adding pins to custom map example*
 
-2. Open `index.html` in your browser to access the application.
+![user map with clues and pins](https://github.com/user-attachments/assets/5adc08d9-6fe1-4cc9-86e2-b905e9cd9fef)
 
-## Usage
+*enter code to access treasure hunt map*
 
-### Conduct a Hunt
+# Build Photos
+![teamphoto](https://github.com/user-attachments/assets/e6da1574-5b3c-4486-a7ea-39405a617177)
 
-1. Navigate to the "Conduct Hunt" page.
-2. Upload an image and place pins on the image.
-3. Save the map to generate a unique hunt code.
-4. Share the hunt code with participants.
 
-### Join a Hunt
 
-1. Navigate to the "Join Hunt" page.
-2. Enter the hunt code provided by the organizer.
-3. View the treasure map and pins.
+- [Evlin Josyy]: [Created idea and web programmer]
+- [Gopika TR]: [Webpage theme and design]
+- [Harilakshmi]: [Deployed website and firebase integration]
 
-## Troubleshooting
-
-- Ensure the backend server is running when uploading images.
-- Verify that the Google service account key and Firebase configuration are correct.
-- Check the browser console for any error messages.
-
-## License
-
-This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
-
-## Acknowledgements
-
-- [Firebase](https://firebase.google.com/)
-- [Google Cloud](https://cloud.google.com/)
-- [Express](https://expressjs.com/)
-
-Feel free to contribute to this project by submitting issues or pull requests. Happy treasure hunting!
+---
+Made with ❤️ at TinkerHub
