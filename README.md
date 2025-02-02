@@ -55,9 +55,9 @@ For Software: Web browser
 
 
 
-- [Evlin Josyy]: [Created idea and web programmer]
-- [Gopika TR]: [Webpage theme and design]
-- [Harilakshmi]: [Deployed website and firebase integration]
+- Evlin Josyy: Created idea and web programmer
+- Gopika TR: Webpage theme and design
+- Harilakshmi: Deployed website and firebase integration
 
 ---
 Made with ❤️ at TinkerHub
