@@ -5,13 +5,84 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Image Pinning with Dragging</title>
     <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        h2 {
+            margin-bottom: 20px;
+        }
+
+        #controls {
+            margin-bottom: 20px;
+        }
+
+        #imageUpload {
+            margin-bottom: 10px;
+        }
+
+        #imageContainer {
+            width: 100%;
+            max-width: 600px;
+            border: 2px solid #ccc;
+            padding: 10px;
+            box-sizing: border-box;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        #imageContainer img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        .button {
+            padding: 10px 20px;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+
+        .button:hover {
+            background-color: #ddd;
+            transform: scale(1.05);
+        }
+
+        .pin {
+            width: 20px;
+            height: 20px;
+            background-color: red;
+            border-radius: 50%;
+            position: absolute;
+            transform: translate(-50%, -50%);
+            cursor: pointer;
+        }
+
+        @media (max-width: 600px) {
+            #imageContainer {
+                width: 100%;
+                padding: 5px;
+            }
+
+            .button {
+                width: 100%;
+                box-sizing: border-box;
+            }
+        }
+    </style>
 </head>
 <body>
 
     <h2>Upload an Image and Place Pins</h2>
     <input type="file" id="imageUpload" accept="image/*">
     <div id="controls">
-        <button id="addPinButton" disabled>Add Pin</button>
+        <button id="addPinButton" class="button" disabled>Add Pin</button>
     </div>
     <div id="imageContainer"></div>
 

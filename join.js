@@ -38,11 +38,11 @@ async function loadMap(mapCode) {
     if (docSnap.exists()) {
         const data = docSnap.data();
 
-        // Display the image from Imgur URL
+        // Display the uploaded image from Google Cloud Storage URL
         const img = document.createElement('img');
-        img.src = `https://cors-anywhere.herokuapp.com/${data.imageUrl}`; // Use CORS proxy for testing
+        img.src = data.imageUrl; // Use the Google Cloud Storage URL from Firestore
         img.id = 'uploadedImage';
-        img.crossOrigin = 'anonymous'; // Ensure CORS handling
+        img.crossOrigin = 'anonymous'; // Ensure CORS handling if necessary
         mapContainer.innerHTML = '';  // Clear existing map
         mapContainer.appendChild(img);
 
