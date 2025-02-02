@@ -80,8 +80,8 @@ imageContainer.addEventListener('click', function(event) {
 
     const pin = document.createElement('div');
     pin.classList.add('pin');
-    pin.style.left = `${(x / rect.width) * 100 + 1}%`; // Adjusted to the right
-    pin.style.top = `${(y / rect.height) * 100 + 1}%`; // Adjusted down
+    pin.style.left = `${(x / rect.width) * 100}%`;
+    pin.style.top = `${(y / rect.height) * 100}%`;
 
     pin.addEventListener('dblclick', function() {
         pins = pins.filter(p => p.x !== x || p.y !== y);
@@ -89,7 +89,7 @@ imageContainer.addEventListener('click', function(event) {
     });
 
     imageContainer.appendChild(pin);
-    pins.push({ x: (x / rect.width) * 100 + 1, y: (y / rect.height) * 100 + 1 });
+    pins.push({ x: (x / rect.width) * 100, y: (y / rect.height) * 100 });
     pinMode = false;
     addPinButton.textContent = "Add Pin";
     console.log('Pin placed at:', { x, y });
