@@ -1,0 +1,125 @@
+@font-face {
+    font-family: 'Old Raven';
+    src: url('path/to/old-raven.woff2') format('woff2'),
+         url('path/to/old-raven.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+body {
+    font-family: 'Georgia', serif;
+    background: url('https://www.transparenttextures.com/patterns/old-map.png'); /* Parchment background */
+    margin: 0;
+    padding: 0;
+    color: #5a4632; /* Vintage text color */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.container {
+    text-align: center;
+    padding: 50px;
+    max-width: 800px;
+    margin: auto;
+    background: rgba(255, 255, 255, 0.9); /* Slightly transparent background */
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border: 5px solid #d4c2a8; /* Decorative border */
+    background-image: url('https://www.transparenttextures.com/patterns/old-map.png'); /* Parchment background */
+}
+
+h1 {
+    color: #5a4632; /* Vintage text color */
+    font-size: 2.5em;
+    margin-bottom: 10px;
+}
+
+.ewert-font {
+    font-family: 'Ewert', serif; /* Apply Ewert font */
+}
+
+.tagline {
+    font-size: 1.5em;
+    color: #5a4632; /* Vintage text color */
+    margin-bottom: 20px;
+}
+
+.options {
+    margin-top: 20px;
+}
+
+.button {
+    display: inline-block;
+    padding: 15px 30px;
+    margin: 10px;
+    background-color: #d4c2a8; /* Vintage button color */
+    color: #5a4632; /* Vintage text color */
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 1.2em;
+    transition: background-color 0.3s;
+    border: 1px solid #5a4632; /* Vintage border color */
+}
+
+.button:hover {
+    background-color: #b8a58c; /* Vintage hover color */
+}
+
+.quote {
+    font-size: 1.2em;
+    color: #5a4632; /* Vintage text color */
+    margin-top: 20px;
+}
+
+#map {
+    width: 100%;
+    height: 400px;
+    background-color: #ddd;
+    margin-top: 20px;
+    border: 2px solid #4e54c8;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+input[type="text"] {
+    padding: 10px;
+    margin: 10px;
+    width: calc(100% - 40px);
+    max-width: 400px;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+#imageContainer {
+    position: relative;
+    display: inline-block;
+    margin-top: 20px;
+    border: 2px solid #ddd;
+}
+
+#uploadedImage {
+    max-width: 90%;
+    height: auto;
+}
+
+.pin {
+    position: absolute;
+    width: 15px;
+    height: 15px;
+    background-color: red;
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    cursor: grab;
+    border: 2px solid white;
+}
+
+#controls {
+    margin-top: 10px;
+}
+
+
+
+

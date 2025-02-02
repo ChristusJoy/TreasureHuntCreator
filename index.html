@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Treasure Hunt</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Ewert&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container vintage">
+        <h1 class="ewert-font">Welcome to the Treasure Hunt</h1>
+        <p class="tagline">Seek - Solve - Succeed</p>
+        <div class="options">
+            <a href="conduct.html" class="button">Conduct Hunt</a>
+            <a href="join.html" class="button">Join Hunt</a>
+        </div>
+        <p id="quote" class="quote"></p>
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const quotes = [
+                "Are you a map? Because you lead to treasure.",
+                "You must be gold, because I’ve struck it rich!",
+                "Is your name X? Because you mark my spot.",
+                "You’re the real treasure I’ve been hunting for.",
+                "Are you a clue? Because you complete my quest.",
+                "Let’s bury our worries and dig up love!",
+                "You're shinier than the rarest treasure chest.",
+                "I’d cross any ocean to find you.",
+                "No need for a compass—you’re my true north.",
+                "Are you hidden treasure? Because I just discovered love!",
+                "Forget gold, you’re the only prize I seek.",
+                "I don’t need a map to know you’re mine.",
+                "Your heart is rarer than the finest gems.",
+                "Even pirates would trade their loot for you.",
+                "You’re worth more than a chest full of gold.",
+                "My heart’s a buried treasure—care to dig it up?",
+                "You’re my final clue to happiness!",
+                "You’re the X that completes my adventure.",
+                "I’d decode a thousand clues just to find you.",
+                "You must be a hidden gem—I’ve struck luck!"
+            ];
+            const randomQuote = quotes[Math.floor(Math.random() * quotes.length)];
+            document.getElementById('quote').textContent = randomQuote;
+        });
+    </script>
+    <script type="module">
+        // Import Firebase SDK
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js";
+        import { getStorage, ref, uploadBytes, getDownloadURL } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-storage.js";
+        import { getFirestore, collection, addDoc, getDocs } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore.js";
+      
+        // Your Firebase Config (Replace with your own Firebase config)
+        const firebaseConfig = {
+
+            apiKey: "AIzaSyA_kRvUF-Thdbumx8Uqz6lMvpHTszA1ODo",
+
+            authDomain: "treasurehunt-3e86a.firebaseapp.com",
+
+            projectId: "treasurehunt-3e86a",
+
+            storageBucket: "treasurehunt-3e86a.firebasestorage.app",
+
+            messagingSenderId: "76648533191",
+
+            appId: "1:76648533191:web:d143846a49f2a253abc2e2"
+
+};
+
+      
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const storage = getStorage(app);
+        const db = getFirestore(app);
+      
+        // Expose Firebase variables globally
+        window.firebaseApp = app;
+        window.firebaseStorage = storage;
+        window.firebaseDB = db;
+        window.firebaseConfig = firebaseConfig;
+      </script>
+      
+</body>
+</html>
