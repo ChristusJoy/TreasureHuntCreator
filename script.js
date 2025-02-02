@@ -30,44 +30,21 @@ let uploadedImageFile = null;
 let pinMode = false;
 let pins = []; // Store pin positions
 
-// Upload Image to Google Drive via Backend API
-async function uploadToGoogleDrive(file) {
-    const formData = new FormData();
-    formData.append("image", file);
-
-    console.log("Uploading image to backend...");
-    try {
-        const response = await fetch("http://127.0.0.1:3000/upload", { // Ensure backend is running
-            method: "POST",
-            body: formData
-        });
-
-        if (!response.ok) {
-            throw new Error(`HTTP error! status: ${response.status}`);
-        }
-
-        const data = await response.json();
-        
-        console.log("Backend response:", data);
-        if (data.success) {
-            console.log("Google Drive URL:", data.url);
-            return data.url;
-        } else {
-            console.error("Upload failed:", data.error);
-            return null;
-        }
-    } catch (error) {
-        console.error("Error during fetch:", error);
-        alert("Network error: Unable to upload image. Please ensure the backend server is running.");
-        return null;
-    }
+// Convert image file to Base64 string
+function convertToBase64(file) {
+    return new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.onloadend = () => resolve(reader.result);
+        reader.onerror = reject;
+        reader.readAsDataURL(file); // Converts image to Base64
+    });
 }
 
 // Handle image upload and display
 imageUpload.addEventListener('change', function(event) {
     const file = event.target.files[0];
-    console.log("File selected:", file);  // Log selected file
-    
+    console.log('File selected:', file);
+
     if (file) {
         uploadedImageFile = file;
         const reader = new FileReader();
@@ -80,7 +57,7 @@ imageUpload.addEventListener('change', function(event) {
             addPinButton.disabled = false;
             saveButton.disabled = false;
             pins = []; // Reset pins
-            console.log("Image displayed successfully.");
+            console.log('Image displayed successfully.');
         };
         reader.readAsDataURL(file);
     }
@@ -90,21 +67,21 @@ imageUpload.addEventListener('change', function(event) {
 addPinButton.addEventListener('click', function() {
     pinMode = true;
     addPinButton.textContent = "Click on Image to Place Pin";
-    console.log("Pin-adding mode enabled.");
+    console.log('Pin-adding mode enabled.');
 });
 
 // Place a pin on the image
 imageContainer.addEventListener('click', function(event) {
     if (!pinMode) return;
-    
+
     const rect = imageContainer.getBoundingClientRect();
     const x = event.clientX - rect.left;
     const y = event.clientY - rect.top;
 
     const pin = document.createElement('div');
     pin.classList.add('pin');
-    pin.style.left = `${x}px`;
-    pin.style.top = `${y}px`;
+    pin.style.left = `${(x / rect.width) * 100 + 1}%`; // Adjusted to the right
+    pin.style.top = `${(y / rect.height) * 100 + 1}%`; // Adjusted down
 
     pin.addEventListener('dblclick', function() {
         pins = pins.filter(p => p.x !== x || p.y !== y);
@@ -112,48 +89,44 @@ imageContainer.addEventListener('click', function(event) {
     });
 
     imageContainer.appendChild(pin);
-    pins.push({ x, y });
+    pins.push({ x: (x / rect.width) * 100 + 1, y: (y / rect.height) * 100 + 1 });
     pinMode = false;
     addPinButton.textContent = "Add Pin";
-    console.log("Pin placed at:", { x, y });
+    console.log('Pin placed at:', { x, y });
 });
 
 // Save map to Firestore
 saveButton.addEventListener('click', async function() {
     if (!uploadedImageFile || pins.length === 0) {
-        alert("Please upload an image and add pins before saving.");
+        alert('Please upload an image and add pins before saving.');
         return;
     }
 
-    console.log("Preparing to upload image...");
-    const imageUrl = await uploadToGoogleDrive(uploadedImageFile);
-    if (!imageUrl) {
-        alert("Image upload failed.");
+    console.log('Preparing to convert image to Base64...');
+    const base64Image = await convertToBase64(uploadedImageFile);
+    if (!base64Image) {
+        alert('Image conversion failed.');
         return;
     }
 
     // Log image URL and pin data for debugging
-    console.log("Saving to Firestore with Image URL:", imageUrl);
-    console.log("Pins:", pins);
+    console.log('Saving to Firestore with Base64 image data:', base64Image);
+    console.log('Pins:', pins);
 
     const mapCode = Math.random().toString(36).substr(2, 6); // Generate unique code
-    console.log("Generated map code:", mapCode);
+    console.log('Generated map code:', mapCode);
 
     try {
         // Save map to Firestore
-        console.log("Saving map data to Firestore...");
-        await setDoc(doc(db, "treasure_maps", mapCode), {
-            imageUrl,
+        console.log('Saving map data to Firestore...');
+        await setDoc(doc(db, 'treasure_maps', mapCode), {
+            imageBase64: base64Image,
             pins
         });
-        alert("Map saved successfully! Share this code: " + mapCode);
-        console.log("Map saved successfully to Firestore.");
-        // Display the map code
-        const mapCodeDisplay = document.createElement('p');
-        mapCodeDisplay.textContent = `Map Code: ${mapCode}`;
-        document.body.appendChild(mapCodeDisplay);
+        alert('Map saved successfully! Share this code: ' + mapCode);
+        console.log('Map saved successfully to Firestore.');
     } catch (error) {
-        console.error("Error saving map to Firestore:", error);
-        alert("There was an error saving the map.");
+        console.error('Error saving map to Firestore:', error);
+        alert('There was an error saving the map.');
     }
 });

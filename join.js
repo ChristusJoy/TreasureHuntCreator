@@ -38,23 +38,42 @@ async function loadMap(mapCode) {
     if (docSnap.exists()) {
         const data = docSnap.data();
 
-        // Display the uploaded image from Google Cloud Storage URL
+        // Create image element and set source to Base64 data
         const img = document.createElement('img');
-        img.src = data.imageUrl; // Use the Google Cloud Storage URL from Firestore
+        img.src = data.imageBase64; // Use the Base64 image string from Firestore
         img.id = 'uploadedImage';
-        img.crossOrigin = 'anonymous'; // Ensure CORS handling if necessary
-        mapContainer.innerHTML = '';  // Clear existing map
-        mapContainer.appendChild(img);
+        
+        img.onload = () => {
+            mapContainer.innerHTML = ''; // Clear any existing content in map container
+            mapContainer.appendChild(img); // Append image to map container
 
-        // Place pins
-        data.pins.forEach(({ x, y }) => {
-            const pin = document.createElement('div');
-            pin.classList.add('pin');
-            pin.style.left = `${x}px`;
-            pin.style.top = `${y}px`;
-            mapContainer.appendChild(pin);
-        });
+            // Place pins after image is loaded
+            placePins(data.pins, img);
+        };
+
+        img.crossOrigin = 'anonymous'; // Ensure CORS handling if necessary
     } else {
         alert("Map not found! Please check the hunt code.");
     }
+}
+
+// Function to place pins after image is loaded
+function placePins(pins, img) {
+    const imgRect = img.getBoundingClientRect(); // Get image's bounding box in the container
+
+    pins.forEach(({ x, y }) => {
+        // Create pin element
+        const pin = document.createElement('div');
+        pin.classList.add('pin');
+
+        // Calculate pin position relative to the image's size and position
+        const pinX = (x / 100) * imgRect.width + 10; // Adjusted to the right
+        const pinY = (y / 100) * imgRect.height + 10; // Adjusted down
+
+        // Set the position of the pin based on the image's bounding box
+        pin.style.left = `${pinX}px`; 
+        pin.style.top = `${pinY}px`; 
+
+        mapContainer.appendChild(pin);
+    });
 }
